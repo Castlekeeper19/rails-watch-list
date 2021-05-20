@@ -1,0 +1,13 @@
+<div class="category mt-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-6">
+      <h1>Add a new bookmark</h1>
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <%= f.input :movie_id, collection: @movies, include_blank: false %>
+          <%= f.input :comment %>
+          <%= f.submit "Add", class: "btn btn-info mt-2" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+

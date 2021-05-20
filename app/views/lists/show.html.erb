@@ -1,0 +1,49 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1400x600/?#{@list.name});">
+  <div class="container">
+  <h1 class = "container"> <em> <%= @list.name %></h1></em>
+  </div>
+</div>
+
+<div class="container d.flex justify-content-center">
+  <div class="card-trip">
+    <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" /> -->
+
+
+    <div class="card-trip-infos">
+      <div>
+        <div class ="d-flex justify-content-between p-2 m-3 border-bottom">
+            <h2>  <%= link_to "Add a movie", new_list_bookmark_path(@list) %></h2>
+            <div class="d-flex">
+              <%= link_to list_path(@list.id), method: :delete, data: { confirm: 'Do you want to delete?' } do %>
+             <h2> <i class="fas fa-trash"></i> </h2>
+             <%= link_to 'Back', lists_path, class: 'btn btn-info rounded ml-3'  %>
+              <% end %>
+            </div>
+          </div>
+
+        <div class=" row d.flex">
+          <% @list.movies.each do |movie| %>
+          <div class = " col-4 card mx-3 p-2">
+          <%= image_tag movie.poster_url , alt: "alttext" %>
+          <h3><%= movie.title %></h3>
+          <p><%= movie.overview %></p>
+          <p> <%= "⭐️" * movie.rating.to_f  %>  </p>
+            <% movie.bookmarks.each do |bookmark|%>
+            <p><%= bookmark.comment %></p>
+            <div>
+            <%= link_to bookmark_path(bookmark.id), method: :delete, data: { confirm: 'Do you want to delete?' } do %>
+                <i class="fas fa-trash"></i>
+                <% end %>
+                </div>
+                </div>
+
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <h2 class="card-trip-pricing"> <%=  %> </h2>
+    </div>
+    <%= link_to 'Back', lists_path, class: 'btn btn-light'  %>
+  </div>
+

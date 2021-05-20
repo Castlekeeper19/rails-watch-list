@@ -1,0 +1,29 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1400x600/?movies);">
+  <div class="container">
+  <h1 class = "container"> <em> Welcome to the movies!</h1></em>
+  </div>
+</div>
+
+<div class="container">
+  <div class= "d-flex justify-content-between">
+  <h1>Lists</h1>
+    <div class="my-2 mr-5 ">
+      <%= link_to new_list_path do %>
+      <i class="fas fa-plus btn btn-primary">Add New</i>
+      <% end %>
+    </div>
+  </div>
+  <div class="cards">
+     <% @lists.each do |list| %>
+     <div class="card" >
+        <%= image_tag "https://source.unsplash.com/400x400/?#{list.name}", alt: "alttext" %>
+
+        <div class="card-product-infos text-align-center">
+           <h2> <%= list.name %> </h2>
+        </div>
+           <%= link_to "", list_path(list), class: 'card-link'  %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
