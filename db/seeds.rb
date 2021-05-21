@@ -23,7 +23,6 @@ repos = JSON.parse(response)
     Movie.create(
       overview: obj["overview"],
       title: obj["title"],
-      overview: obj["overview"],
       poster_url: ("https://image.tmdb.org/t/p/w500" + obj["poster_path"]),
       rating: obj["vote_average"].to_f
       )
