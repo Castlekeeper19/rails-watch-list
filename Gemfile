@@ -27,6 +27,7 @@ gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'simple_form'
 gem 'rest-client'
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
