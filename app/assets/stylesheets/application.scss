@@ -1,3 +1,5 @@
+
+
 // Graphical variables
 @import "config/fonts";
 @import "config/colors";
@@ -14,7 +16,18 @@
 
 
 body {
-  background-color: #412234 {
+  background-color: $gray {
 
   }
+}
+
+.list-img {
+  height: 200px;
+  background-size: cover;
+
+}
+
+h1 {
+  color: white;
+  font-family: 'Unica One', cursive;
 }

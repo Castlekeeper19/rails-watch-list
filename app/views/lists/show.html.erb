@@ -1,6 +1,6 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : image_path('https://source.unsplash.com/400x400/?#{@list.name}') %>);">
-  <div class="container">
-  <h1 class = "container"> <em> <%= @list.name %></h1></em>
+  <div class="container position-relative">
+  <h1 class="index-banner" > <%= @list.name %>  </h1>
   </div>
 </div>
 
@@ -10,32 +10,39 @@
 
 
     <div class="card-trip-infos">
-      <div>
-        <div class ="d-flex justify-content-between p-2 m-3 border-bottom">
-            <h2>  <%= link_to "Add a movie", new_list_bookmark_path(@list) %></h2>
+      <div class>
+        <div class ="d-flex justify-content-between my-2 p-2 border-bottom bg-secondary rounded">
+            <h2 >  <%= link_to "Add a movie", new_list_bookmark_path(@list), class:"btn btn-primary mx-3"%></h2>
             <div class="d-flex">
               <%= link_to list_path(@list.id), method: :delete, data: { confirm: 'Do you want to delete?' } do %>
              <h2> <i class="fas fa-trash"></i> </h2>
-             <%= link_to 'Back', lists_path, class: 'btn btn-info rounded ml-3'  %>
+             <%= link_to 'Back', lists_path, class: 'btn btn-primary rounded mx-3'  %>
               <% end %>
             </div>
           </div>
 
-        <div class=" row d.flex">
+        <div class=" cards row d-flex ">
           <% @list.movies.each do |movie| %>
-          <div class = " col-4 card mx-3 p-2">
-          <%= image_tag movie.poster_url , alt: "alttext" %>
-          <h3><%= movie.title %></h3>
-          <p><%= movie.overview %></p>
-          <p> <%= "⭐️" * movie.rating.to_f  %>  </p>
-            <% movie.bookmarks.each do |bookmark|%>
-            <p><%= bookmark.comment %></p>
-            <div>
-            <%= link_to bookmark_path(bookmark.id), method: :delete, data: { confirm: 'Do you want to delete?' } do %>
+          <div class = "d-flex flex-column justify-content-between col-12 col-md-6 col-lg-4  card mx-3 p-4 rounded">
+            <div class = "movie-info">
+              <%= image_tag movie.poster_url , alt: "alttext" %>
+              <h3 class="border-bottom"><strong><%= movie.title %></strong></h3>
+              <p><%= movie.overview %></p>
+              <p> <%= "⭐️" * (movie.rating.to_f/2)  %>  </p>
+            </div>
+            <div class="d-flex justify-content-between border-top">
+              <% movie.bookmarks.each do |bookmark|%>
+              <div class="d-flex flex-column">
+                <p><em> What people have said about <%= bookmark.movie.title %>: </em></p>
+                <p><%= bookmark.comment %></p>
+              </div>
+              <div>
+               <%= link_to bookmark_path(bookmark.id), method: :delete, data: { confirm: 'Do you want to delete?' } do %>
                 <i class="fas fa-trash"></i>
                 <% end %>
-                </div>
-                </div>
+              </div>
+            </div>
+          </div>
 
             <% end %>
           <% end %>
@@ -44,6 +51,5 @@
       </div>
       <h2 class="card-trip-pricing"> <%=  %> </h2>
     </div>
-    <%= link_to 'Back', lists_path, class: 'btn btn-light'  %>
   </div>
 
