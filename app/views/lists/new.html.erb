@@ -4,6 +4,8 @@
       <h1>Add a new list</h1>
         <%= simple_form_for @list do |f| %>
           <%= f.input :name %>
+          <%= f.input :photo, as: :file  %>
+
           <%= f.submit "Add", class: "btn btn-info mt-2" %>
         <% end %>
         <div class="d-flex justify-content-end">
